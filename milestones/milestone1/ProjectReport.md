@@ -61,9 +61,7 @@ This web application is designed to help manage an inventory of tech supplies an
 
 ### **Initial UI Wireframes:**
 - **Home Page:**
-  - A table of inventory items with buttons to edit and delete.
-  - A button to add new products at the top.
-  - A search bar for filtering items by name/category.
+  ![Home Page Wireframes](<Screenshot 2025-01-21 at 7.39.57 AM.png>)
 - **Add Product Page:**
   - Form fields for adding product details.
   - Submit button to save new product.
