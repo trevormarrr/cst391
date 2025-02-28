@@ -1,0 +1,23 @@
+<div class="container">
+
+  <h1>Welcome to {{ title }}</h1>
+
+
+  <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+
+  <div class="d-flex justify-content-center" id="navbarNav">
+    <div style="margin: 0 auto;">
+    <div class="navbar-nav">
+      <a class="submit-button text-center" href="#">My Music</a>
+      <a class="submit-button text-center" href="https://www.gcu.edu" target="_blank">GCU Home Page</a>
+      <a class="submit-button text-center" routerLink="/create">Create Album</a>
+      <a class="submit-button text-center" (click)="displayArtistList()">Artist List</a>
+      <button class="submit-button text-center" (click)="displayVersion()">About</button>
+    </div>
+  </div>
+  </div>
+</nav>
+
+  <router-outlet></router-outlet>
+
+</div>
