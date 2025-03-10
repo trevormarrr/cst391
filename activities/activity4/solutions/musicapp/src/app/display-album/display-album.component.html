@@ -1,0 +1,33 @@
+<div align="center" *ngIf="album">
+  <div class="card mb-6" style="max-width: 500px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <div style="height: 150px; width: 150px; overflow: hidden;">
+          <img src="assets/images/{{ album.image }}" class="card-img"
+            alt="{{ album.title }}" width="150px" height="150px">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ album.title }}</h5>
+          <p class="card-text">{{ album.description }}</p>
+          <p class="card-text">
+            <small class="text-muted">{{ album.year }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3" style="max-width: 500px;">
+    <div class="card-header">
+      <h5>Tracks</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let track of album.tracks">
+        {{track.number}}. {{track.title}}
+      </li>
+    </ul>
+  </div>
+</div>
+

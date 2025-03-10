@@ -8,7 +8,7 @@ import { OkPacket } from 'mysql';
 export const readAlbums: RequestHandler = async (req: Request, res: Response) => {
     try {
         let albums;
-        let albumId = parseInt(req.query.albumId as string);
+        let albumId = parseInt(req.params.id || req.query.albumId as string);
 
         console.log('albumId', albumId);
         if (Number.isNaN(albumId)) {
@@ -17,9 +17,7 @@ export const readAlbums: RequestHandler = async (req: Request, res: Response) =>
             albums = await AlbumDao.readAlbumsByAlbumId(albumId);
         }
         await readTracks(albums, res);
-        res.status(200).json(
-            albums
-        );
+        res.status(200).json(albums);
     } catch (error) {
         console.error('[albums.controller][readAlbums][Error]', error);
         res.status(500).json({

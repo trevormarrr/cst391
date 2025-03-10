@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Albums by {{artistName}}</h2>
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let album of albums">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{album.title}}</h5>
+          <p class="card-text">{{album.year}}</p>
+          <a [routerLink]="['/display', album.albumId]" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-display-album *ngIf="selectedAlbum" [album]="selectedAlbum"></app-display-album>
