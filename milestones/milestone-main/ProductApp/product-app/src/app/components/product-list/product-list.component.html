@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2>Product List</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Condition</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.condition }}</td>
+        <td>{{ product.price | currency }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" [routerLink]="['/edit', product.product_id]">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.product_id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
