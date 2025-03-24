@@ -24,6 +24,7 @@ export class ProductFormComponent implements OnInit {
   };
 
   isEditMode = false;
+  isViewMode = false;
 
   constructor(
     private productService: ProductService,
@@ -34,23 +35,40 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.isEditMode = true;
       this.productService.getProductById(+id).subscribe((data) => {
         this.product = data;
+        this.isEditMode = this.router.url.includes('/edit');
+        this.isViewMode = !this.isEditMode;
       });
     }
   }
 
   saveProduct(): void {
     if (this.isEditMode) {
-      this.productService.updateProduct(this.product).subscribe(() => {
-        this.router.navigate(['/products']);
+      this.productService.updateProduct(this.product).subscribe({
+        next: () => {
+          this.router.navigate(['/products']);
+        },
+        error: (error) => {
+          console.error('Error updating product:', error);
+          // Handle error appropriately
+        }
       });
     } else {
-      this.productService.createProduct(this.product).subscribe(() => {
-        this.router.navigate(['/products']);
+      this.productService.createProduct(this.product).subscribe({
+        next: () => {
+          this.router.navigate(['/products']);
+        },
+        error: (error) => {
+          console.error('Error creating product:', error);
+          // Handle error appropriately
+        }
       });
     }
+  }
+
+  editProduct(): void {
+    this.router.navigate(['/products/edit', this.product.product_id]);
   }
 
   public navigateToProducts() {

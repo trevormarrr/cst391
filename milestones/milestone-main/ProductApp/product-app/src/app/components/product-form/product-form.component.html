@@ -1,34 +1,42 @@
 <div class="container mt-4">
-  <h2>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
-  <form (ngSubmit)="saveProduct()">
-    <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required />
+  <h2>{{ isViewMode ? 'Product Details' : (isEditMode ? 'Edit Product' : 'Create Product') }}</h2>
+  <form (ngSubmit)="saveProduct()" #productForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name"
+             [(ngModel)]="product.name" required [readonly]="isViewMode">
     </div>
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description"></textarea>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" [readonly]="isViewMode"></textarea>
     </div>
-    <div class="mb-3">
-      <label for="category" class="form-label">Category</label>
-      <input type="text" id="category" class="form-control" [(ngModel)]="product.category" name="category" />
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input type="text" id="category" class="form-control" [(ngModel)]="product.category" name="category" [readonly]="isViewMode" />
     </div>
-    <div class="mb-3">
-      <label for="quantity" class="form-label">Quantity</label>
-      <input type="number" id="quantity" class="form-control" [(ngModel)]="product.quantity" name="quantity" required />
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" class="form-control" [(ngModel)]="product.quantity" name="quantity" required [readonly]="isViewMode" />
     </div>
-    <div class="mb-3">
-      <label for="condition" class="form-label">Condition</label>
-      <select id="condition" class="form-select" [(ngModel)]="product.condition" name="condition" required>
+    <div class="form-group">
+      <label for="condition">Condition</label>
+      <select id="condition" class="form-select" [(ngModel)]="product.condition" name="condition" required [disabled]="isViewMode">
         <option value="new">New</option>
         <option value="used">Used</option>
       </select>
     </div>
-    <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
-      <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required />
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required [readonly]="isViewMode" />
     </div>
-    <button type="submit" class="btn btn-success">Save</button>
-    <button type="button" class="btn btn-secondary" (click)="navigateToProducts()">Cancel</button>
+    <div class="mt-3">
+      <button *ngIf="!isViewMode" type="submit" class="btn btn-primary me-2">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+      <button *ngIf="isViewMode" type="button" class="btn btn-primary me-2" (click)="editProduct()">
+        Edit
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="navigateToProducts()">Cancel</button>
+    </div>
   </form>
 </div>
