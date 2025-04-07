@@ -5,18 +5,12 @@
 
 
 
-- Cover Page
-- Executive Summary
-- Captioned screenshots with explanations of each page
-     - Take screenshots of the application you created
-     - Be sure to show the various features that were illustrated in this lesson
-     - Write a one-paragraph summary of the new features that have been added
-     - Define new terminology that was used in the lesson
-- Conclusion
+![part1](pt1.png)
+![part2](pt2.png)
 
 ## Conclusion
 
-- Explain what you learned on this assignment throughly ...
+
 
 ## Troubleshooting
 
