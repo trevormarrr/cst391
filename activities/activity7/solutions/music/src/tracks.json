@@ -1,0 +1,32 @@
+[
+  {
+    "albumId": 0,
+    "tracks": [
+      {
+        "title": "Yellow Submarine",
+        "lyrics": "In the town where I was born\nLived a man who sailed to sea\nAnd he told us of his life\nIn the land of submarines...",
+        "video": "m2uTFF_3MaA"
+      },
+      {
+        "title": "Hey Bulldog",
+        "lyrics": "Sheepdog\nStanding in the rain\nBullfrog\nDoing it again...",
+        "video": "M4vbJQ-MrKo"
+      }
+    ]
+  },
+  {
+    "albumId": 1,
+    "tracks": [
+      {
+        "title": "Come Together",
+        "lyrics": "Here come old flat top\nHe come grooving up slowly\nHe got joo joo eyeball...",
+        "video": "45cYwDMibGo"
+      },
+      {
+        "title": "Something",
+        "lyrics": "Something in the way she moves\nAttracts me like no other lover...",
+        "video": "UelDrZ1aFeY"
+      }
+    ]
+  }
+]

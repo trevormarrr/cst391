@@ -75,20 +75,15 @@ export const readAlbumsByDescriptionSearch: RequestHandler = async (req: Request
 export const createAlbum: RequestHandler = async (req: Request, res: Response) => {
     try {
         const okPacket: OkPacket = await AlbumDao.createAlbum(req.body);
-
         console.log('req.body', req.body);
         console.log('album', okPacket);
 
-        req.body.tracks.forEach(async (track: Track, index: number) => {
-            try {
-                await TracksDao.createTrack(track, index, okPacket.insertId);
-            } catch (error) {
-                console.error('[albums.controller][createAlbumTracks][Error] ', error);
-                res.status(500).json({
-                    message: 'There was an error when writing album tracks'
-                });
-            }
-        });
+        // Use Promise.all to wait for all track operations
+        await Promise.all(
+            req.body.tracks.map(async (track: Track, index: number) => {
+                return await TracksDao.createTrack(track, index, okPacket.insertId);
+            })
+        );
 
         res.status(200).json(okPacket);
     } catch (error) {
@@ -102,20 +97,15 @@ export const createAlbum: RequestHandler = async (req: Request, res: Response) =
 export const updateAlbum: RequestHandler = async (req: Request, res: Response) => {
     try {
         const okPacket: OkPacket = await AlbumDao.updateAlbum(req.body);
-
         console.log('req.body', req.body);
         console.log('album', okPacket);
 
-        req.body.tracks.forEach(async (track: Track, index: number) => {
-            try {
-                await TracksDao.updateTrack(track);
-            } catch (error) {
-                console.error('[albums.controller][updateAlbum][Error] ', error);
-                res.status(500).json({
-                    message: 'There was an error when updating album tracks'
-                });
-            }
-        });
+        // Use Promise.all to wait for all track operations
+        await Promise.all(
+            req.body.tracks.map(async (track: Track) => {
+                return await TracksDao.updateTrack(track);
+            })
+        );
 
         res.status(200).json(okPacket);
     } catch (error) {
@@ -125,7 +115,6 @@ export const updateAlbum: RequestHandler = async (req: Request, res: Response) =
         });
     }
 };
-
 export const deleteAlbum: RequestHandler = async (req: Request, res: Response) => {
     try {
         let albumId = parseInt(req.params.albumId as string);

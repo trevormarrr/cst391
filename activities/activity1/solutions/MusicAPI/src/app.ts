@@ -22,7 +22,7 @@ app.use(helmet({
 
 // CORS configuration
 app.use(cors({
-  origin: 'http://localhost:4200', // Angular app URL
+  origin: ['http://localhost:4200', 'http://localhost:3000'], // Allow both Angular and React app URLs
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
